@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>gundong</title>
+    <style>
+    * {margin: 0;padding: 0;}
+    #div1 {width: 400px;height: 200px; margin: 100px auto;overflow: hidden ;background: #ccc;position: relative;}
+    #div1 ul {position: absolute;left: 0;top: 0;} 
+    #div1 ul li { float: left; width: 100px;height: 200px;list-style: none;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            var oUl=oDiv.getElementsByTagName('ul')[0];
+            var aLi=oUl.getElementsByTagName('li');
+            var speed = 1;
+            oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;
+            oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+            function move(){
+                if(oUl.offsetLeft<-oUl.offsetWidth/2){
+                    oUl.style.left='0';
+                    };
+                if(oUl.offsetLeft>0){
+                    oUl.style.left=-oUl.offsetWidth/2+'px';
+                };
+                oUl.style.left=oUl.offsetLeft+speed+'px';
+            };
+            var timer=setInterval(move,10);
+            oDiv.onmousemove=function(){
+                clearInterval(timer); 
+            };
+            oDiv.onmouseout=function(){
+                timer=setInterval(move,10);
+            };
+            document.getElementsByTagName('a')[0].onclick=function() {
+                speed=-1;
+            };
+            document.getElementsByTagName('a')[1].onclick=function() {
+                speed=1;
+            };
+
+            };
+            
+    </script>
+</head>
+<body>
+    <a href="javascript:;">向左走</a>
+    <a href="javascript:;">向右走</a>
+    <div id="div1">
+        <ul >
+            <li><img src="pic/1.jpg" alt=""></li>
+            <li><img src="pic/2.jpg" alt=""></li>
+            <li><img src="pic/3.jpg" alt=""></li>
+            <li><img src="pic/4.jpg" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>
